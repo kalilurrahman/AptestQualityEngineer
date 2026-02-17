@@ -1,74 +1,14 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-lg-8">
-        <h1 class="text-center mb-4">Quality Engineering Artifact Generator</h1>
-        <p class="text-center mb-5">
-            Generate comprehensive test strategies, test cases, and more using AI.
-        </p>
-
-        <div class="card shadow-sm">
-            <div class="card-body">
-                <form action="{{ url_for('main.generate') }}" method="POST" enctype="multipart/form-data">
-                    <div class="mb-3">
-                        <label for="api_key" class="form-label">Google Gemini API Key</label>
-                        <input type="password" class="form-control" id="api_key" name="api_key" placeholder="Enter your Gemini API Key" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Input Type</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="context_type" id="type_text" value="text" checked onclick="toggleInput('text')">
-                            <label class="form-check-label" for="type_text">Text Description / Prompt</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="context_type" id="type_url" value="url" onclick="toggleInput('url')">
-                            <label class="form-check-label" for="type_url">URL Reference</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="context_type" id="type_file" value="file" onclick="toggleInput('file')">
-                            <label class="form-check-label" for="type_file">Document Upload (PDF/Text)</label>
-                        </div>
-                    </div>
-
-                    <div class="mb-3" id="input_text_container">
-                        <label for="context_text" class="form-label">Context / Prompt</label>
-                        <textarea class="form-control" id="context_text" name="context_text" rows="5" placeholder="Describe the application or feature to be tested..."></textarea>
-                    </div>
-
-                    <div class="mb-3 d-none" id="input_url_container">
-                        <label for="context_url" class="form-label">Website URL</label>
-                        <input type="url" class="form-control" id="context_url" name="context_url" placeholder="https://example.com">
-                    </div>
-
-                    <div class="mb-3 d-none" id="input_file_container">
-                        <label for="context_file" class="form-label">Upload Document</label>
-                        <input type="file" class="form-control" id="context_file" name="context_file" accept=".pdf,.txt,.md">
-                    </div>
-
-                    <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-primary btn-lg">Generate Artifacts</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+<div class="jumbotron text-center mt-5">
+    <h1 class="display-4">Welcome to Aptest</h1>
+    <p class="lead">AI-Powered Quality Engineering & Autonomous Testing</p>
+    <hr class="my-4">
+    <p>Generate test artifacts or deploy autonomous agents to test your application.</p>
+    <div class="d-grid gap-2 d-md-block">
+        <a class="btn btn-primary btn-lg" href="/generate" role="button">Generate Artifacts</a>
+        <a class="btn btn-secondary btn-lg" href="/agentic" role="button">Autonomous QA Agent</a>
     </div>
 </div>
-
-<script>
-    function toggleInput(type) {
-        document.getElementById('input_text_container').classList.add('d-none');
-        document.getElementById('input_url_container').classList.add('d-none');
-        document.getElementById('input_file_container').classList.add('d-none');
-
-        if (type === 'text') {
-            document.getElementById('input_text_container').classList.remove('d-none');
-        } else if (type === 'url') {
-            document.getElementById('input_url_container').classList.remove('d-none');
-        } else if (type === 'file') {
-            document.getElementById('input_file_container').classList.remove('d-none');
-        }
-    }
-</script>
 {% endblock %}
