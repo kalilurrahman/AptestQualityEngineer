@@ -1,0 +1,32 @@
+{
+    "fullstack_web": {
+        "title": "Full-stack Web App Testing",
+        "description": "Comprehensive test strategy for a modern full-stack web application, covering UI, API, and Database layers.",
+        "content": "\n# Full-stack Web App Test Strategy\n\n## 1. Test Strategy\nTesting a full-stack web application requires a layered approach:\n*   **Unit Testing**: For backend logic (Python/Node.js) and frontend components (React/Angular).\n*   **Integration Testing**: verifying API endpoints and database interactions.\n*   **E2E Testing**: simulating user flows using tools like Cypress or Selenium.\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| TC01 | Auth | User Registration | User created in DB, confirmation email sent | High |\n| TC02 | Auth | Login with invalid credentials | Error message displayed | High |\n| TC03 | Dashboard | Load dashboard data | Data fetched from API and displayed correctly | Medium |\n| TC04 | Profile | Update user profile | Changes saved to DB and reflected in UI | Medium |\n\n## 3. Test Conditions\n*   Browser compatibility (Chrome, Firefox, Safari).\n*   Mobile responsiveness.\n*   Network latency simulation.\n\n## 4. Boundary Test Cases\n*   Input fields max length.\n*   Zero/Negative values in numeric fields.\n*   Concurrent user load.\n"
+    },
+    "google_news": {
+        "title": "Google News App Testing",
+        "description": "Testing strategy for a news aggregation application focusing on personalization and real-time updates.",
+        "content": "\n# Google News App Test Strategy\n\n## 1. Test Strategy\n*   **Personalization Algorithm**: Verify news feed relevance based on user interests.\n*   **Real-time Updates**: Verify breaking news alerts and feed refresh rates.\n*   **Offline Mode**: Verify content caching and reading without internet.\n\n## 2. Test Cases\n\n| ID | Feature | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| GN01 | Feed | New user onboarding | Default news categories shown | High |\n| GN02 | Search | Search for specific topic | Relevant articles displayed | High |\n| GN03 | Offline | Read saved article offline | Article content loads from cache | Medium |\n\n## 3. Critical Analysis\n*   Latency in news delivery can impact user retention.\n*   Accuracy of recommendation engine is critical.\n"
+    },
+    "netflix": {
+        "title": "Netflix Testing",
+        "description": "Testing a video streaming platform with focus on streaming quality, device compatibility, and recommendation engine.",
+        "content": "\n# Netflix Test Strategy\n\n## 1. Test Strategy\n*   **Streaming Quality**: Adaptive bitrate testing under various network conditions.\n*   **Device Compatibility**: Smart TVs, Mobile, Web, Consoles.\n*   **DRM**: Content protection verification.\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| NF01 | Player | Play video on 4G network | Video starts with appropriate resolution | High |\n| NF02 | Search | Search for 'Stranger Things' | Correct title appears in results | High |\n| NF03 | Profile | Switch profile | Recommendations update for selected profile | High |\n\n## 3. Boundary Test Cases\n*   Maximum number of concurrent streams per account.\n*   Download limit for offline viewing.\n"
+    },
+    "car_insurance": {
+        "title": "Car Insurance Industry Testing",
+        "description": "Domain-specific testing for insurance policy lifecycle, claims processing, and premium calculation.",
+        "content": "\n# Car Insurance Application Test Strategy\n\n## 1. Test Strategy\n*   **Premium Calculation**: Verify complex algorithms for quote generation.\n*   **Compliance**: Ensure adherence to state/federal regulations.\n*   **Data Security**: PII protection.\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| CI01 | Quote | Generate quote for new driver | High premium calculated correctly | High |\n| CI02 | Policy | Renew policy | Policy date extended, new premium applied | High |\n| CI03 | Claims | File a claim | Claim ID generated, status 'Pending' | High |\n\n## 3. Test Data\n*   Driver Age: 18, 25, 40, 70.\n*   Vehicle Type: Sedan, SUV, Truck.\n*   History: 0 accidents, 1 accident, DUI.\n"
+    },
+    "telecom_oms": {
+        "title": "Telecom Order Management Testing",
+        "description": "Testing complex order workflows, provisioning, and billing integration for telecom services.",
+        "content": "\n# Telecom Order Management System (OMS) Test Strategy\n\n## 1. Test Strategy\n*   **Order Orchestration**: Verify order flow from capture to fulfillment.\n*   **Provisioning**: Integration with network elements to activate service.\n*   **Billing**: Correct charging initiation.\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| TO01 | Order Capture | Create new fiber connection order | Order created, status 'Submitted' | High |\n| TO02 | Provisioning | Activate service | Network status 'Active', signal live | High |\n| TO03 | Billing | First bill generation | Pro-rated charges applied correctly | High |\n\n## 3. Complex Scenarios\n*   Order modification during flight (MACD).\n*   Order cancellation handling.\n"
+    },
+    "hospital_mgmt": {
+        "title": "Hospital Management System Testing",
+        "description": "Testing critical healthcare workflows including patient admission, scheduling, and electronic health records (EHR).",
+        "content": "\n# Hospital Management System Test Strategy\n\n## 1. Test Strategy\n*   **Patient Safety**: Critical focus on data accuracy (medications, allergies).\n*   **Privacy**: HIPAA compliance.\n*   **Workflow**: Seamless transition between departments (ER -> Ward -> Billing).\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| HM01 | Admission | Register new patient | Patient ID generated, band printed | High |\n| HM02 | EHR | Update patient allergy | Alert shown when prescribing conflicting med | Critical |\n| HM03 | Billing | Discharge patient | Final bill generated including all services | High |\n\n## 3. Acceptance Criteria\n*   System must handle 1000 concurrent users.\n*   Zero data loss during failover.\n"
+    }
+}

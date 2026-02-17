@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <h1 class="mb-4">Generated Quality Engineering Artifacts</h1>
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="markdown-content">
+                    {{ artifacts | safe }}
+                </div>
+            </div>
+            <div class="card-footer text-end">
+                <a href="{{ url_for('main.index') }}" class="btn btn-secondary">Back to Home</a>
+                <button onclick="window.print()" class="btn btn-primary">Print / Save as PDF</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

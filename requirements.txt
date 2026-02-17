@@ -1,0 +1,6 @@
+flask
+google-generativeai
+beautifulsoup4
+requests
+pypdf
+markdown
