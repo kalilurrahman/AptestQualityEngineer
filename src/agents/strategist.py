@@ -1,48 +1,84 @@
 from src.state.state import AgentState, TestPlan, TestScenario
+from src.utils.llm import call_llm
 import uuid
+import json
 
 def strategist_agent(state: AgentState) -> dict:
     """
-    Analyzes requirements and generates a test plan.
-    (Mocked: Returns a fixed test plan for demonstration)
+    Analyzes requirements and generates a test plan using the LLM.
     """
-    print("[Strategist] Analyzing requirements...")
+    print("[Strategist] Analyzing requirements with LLM...")
     requirements = state.get("user_requirements", "")
 
-    # Mock generation logic based on keywords in requirements
-    scenarios = []
-    if "login" in requirements.lower():
-        scenarios.append(TestScenario(
-            id=str(uuid.uuid4()),
-            title="Valid Login",
-            description="Verify user can login with valid credentials.",
-            steps=["Navigate to https://example.com/login", "Enter valid username", "Enter valid password", "Click Login"],
-            expected_result="User is redirected to dashboard",
-            tags=["functional", "happy_path"]
-        ))
-        scenarios.append(TestScenario(
-            id=str(uuid.uuid4()),
-            title="Invalid Login",
-            description="Verify login fails with invalid credentials.",
-            steps=["Navigate to https://example.com/login", "Enter invalid username", "Enter valid password", "Click Login"],
-            expected_result="Error message is displayed",
-            tags=["functional", "negative"]
-        ))
-    else:
-        # Default scenario
-        scenarios.append(TestScenario(
-            id=str(uuid.uuid4()),
-            title="General Navigation",
-            description="Verify homepage loads.",
-            steps=["Navigate to https://example.com"],
-            expected_result="Homepage is visible",
-            tags=["smoke"]
-        ))
+    prompt = f"""
+    You are the Chief Architect of Quality Assurance (Strategist Agent).
+    Your task is to analyze the following User Requirements and generate a comprehensive Test Plan.
 
-    # Serialize scenarios to dicts for state compatibility
-    test_plan_serialized = [s.model_dump() for s in scenarios]
+    User Requirements:
+    "{requirements}"
 
-    return {
-        "test_plan": test_plan_serialized,
-        "execution_logs": ["Generated test plan based on requirements."]
-    }
+    Generate a JSON object containing a list of Test Scenarios.
+    Each scenario must have:
+    - id: A unique string
+    - title: A short descriptive title
+    - description: A detailed description of the objective
+    - steps: A list of high-level steps (e.g., "Navigate to /login", "Enter valid credentials")
+    - expected_result: The expected outcome
+    - tags: A list of tags (e.g., "functional", "security", "smoke")
+
+    Output Schema:
+    {{
+        "scenarios": [
+            {{
+                "id": "...",
+                "title": "...",
+                "description": "...",
+                "steps": ["..."],
+                "expected_result": "...",
+                "tags": ["..."]
+            }}
+        ]
+    }}
+
+    Ensure the test plan covers:
+    1. Happy Path (Functional)
+    2. Edge Cases (Negative Testing)
+    3. Security Considerations (if applicable)
+
+    Return ONLY valid JSON.
+    """
+
+    try:
+        response_text = call_llm(prompt, capability="planning", structured_output_schema=True)
+        # Sanitize response (Gemini sometimes adds markdown blocks)
+        cleaned_text = response_text.replace("```json", "").replace("```", "").strip()
+
+        data = json.loads(cleaned_text)
+
+        scenarios = []
+        for s in data.get("scenarios", []):
+            scenarios.append(TestScenario(
+                id=s.get("id", str(uuid.uuid4())),
+                title=s.get("title", "Untitled Scenario"),
+                description=s.get("description", ""),
+                steps=s.get("steps", []),
+                expected_result=s.get("expected_result", ""),
+                tags=s.get("tags", [])
+            ))
+
+        # Serialize scenarios to dicts for state compatibility
+        test_plan_serialized = [s.model_dump() for s in scenarios]
+
+        return {
+            "test_plan": test_plan_serialized,
+            "execution_logs": ["Generated test plan using LLM."]
+        }
+
+    except Exception as e:
+        print(f"[Strategist] Error generating plan: {e}")
+        # Fallback to empty or error state
+        return {
+            "test_plan": [],
+            "execution_logs": [f"Error generating test plan: {e}"],
+            "error": str(e)
+        }
