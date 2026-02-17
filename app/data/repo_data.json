@@ -1,32 +1,142 @@
 {
     "fullstack_web": {
         "title": "Full-stack Web App Testing",
+        "category": "Web & Mobile",
         "description": "Comprehensive test strategy for a modern full-stack web application, covering UI, API, and Database layers.",
+        "prompt": "Act as an expert Quality Engineer. Generate a comprehensive test strategy for a Full-stack Web Application (React frontend, Python backend, PostgreSQL database). Include functional, API, and database test cases.",
         "content": "\n# Full-stack Web App Test Strategy\n\n## 1. Test Strategy\nTesting a full-stack web application requires a layered approach:\n*   **Unit Testing**: For backend logic (Python/Node.js) and frontend components (React/Angular).\n*   **Integration Testing**: verifying API endpoints and database interactions.\n*   **E2E Testing**: simulating user flows using tools like Cypress or Selenium.\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| TC01 | Auth | User Registration | User created in DB, confirmation email sent | High |\n| TC02 | Auth | Login with invalid credentials | Error message displayed | High |\n| TC03 | Dashboard | Load dashboard data | Data fetched from API and displayed correctly | Medium |\n| TC04 | Profile | Update user profile | Changes saved to DB and reflected in UI | Medium |\n\n## 3. Test Conditions\n*   Browser compatibility (Chrome, Firefox, Safari).\n*   Mobile responsiveness.\n*   Network latency simulation.\n\n## 4. Boundary Test Cases\n*   Input fields max length.\n*   Zero/Negative values in numeric fields.\n*   Concurrent user load.\n"
     },
     "google_news": {
         "title": "Google News App Testing",
+        "category": "Web & Mobile",
         "description": "Testing strategy for a news aggregation application focusing on personalization and real-time updates.",
+        "prompt": "Act as an expert Quality Engineer. Create a detailed test plan for a news aggregation app like Google News. Focus on personalization algorithms, real-time feed updates, and offline reading capabilities.",
         "content": "\n# Google News App Test Strategy\n\n## 1. Test Strategy\n*   **Personalization Algorithm**: Verify news feed relevance based on user interests.\n*   **Real-time Updates**: Verify breaking news alerts and feed refresh rates.\n*   **Offline Mode**: Verify content caching and reading without internet.\n\n## 2. Test Cases\n\n| ID | Feature | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| GN01 | Feed | New user onboarding | Default news categories shown | High |\n| GN02 | Search | Search for specific topic | Relevant articles displayed | High |\n| GN03 | Offline | Read saved article offline | Article content loads from cache | Medium |\n\n## 3. Critical Analysis\n*   Latency in news delivery can impact user retention.\n*   Accuracy of recommendation engine is critical.\n"
     },
     "netflix": {
         "title": "Netflix Testing",
+        "category": "Web & Mobile",
         "description": "Testing a video streaming platform with focus on streaming quality, device compatibility, and recommendation engine.",
+        "prompt": "Act as an expert Quality Engineer. Develop a test strategy for a video streaming platform like Netflix. Include scenarios for adaptive bitrate streaming, multi-device support, and content recommendation accuracy.",
         "content": "\n# Netflix Test Strategy\n\n## 1. Test Strategy\n*   **Streaming Quality**: Adaptive bitrate testing under various network conditions.\n*   **Device Compatibility**: Smart TVs, Mobile, Web, Consoles.\n*   **DRM**: Content protection verification.\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| NF01 | Player | Play video on 4G network | Video starts with appropriate resolution | High |\n| NF02 | Search | Search for 'Stranger Things' | Correct title appears in results | High |\n| NF03 | Profile | Switch profile | Recommendations update for selected profile | High |\n\n## 3. Boundary Test Cases\n*   Maximum number of concurrent streams per account.\n*   Download limit for offline viewing.\n"
+    },
+    "social_network": {
+        "title": "Social Network Feed Algorithm",
+        "category": "Social Media",
+        "description": "Testing the feed ranking algorithm and social interactions for a platform like Instagram or Facebook.",
+        "prompt": "Act as an expert Quality Engineer. Design a test suite for a Social Network Feed Algorithm. Focus on content ranking, user engagement metrics, and edge cases like shadowbanning or content moderation.",
+        "content": "\n# Social Network Feed Algorithm Test Strategy\n\n## 1. Test Strategy\n*   **Algorithm Logic**: Verify that posts from close friends appear higher.\n*   **Engagement**: Verify that likes/comments boost post visibility.\n*   **Moderation**: Ensure flagged content is hidden or downranked.\n\n## 2. Test Cases\n\n| ID | Feature | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| SN01 | Feed | User A likes User B's posts frequently | User B's new post appears at top of User A's feed | High |\n| SN02 | Ads | Ad frequency check | Ads appear every 5-10 posts, not consecutively | Medium |\n| SN03 | Content | Post containing banned keywords | Post is automatically flagged/hidden | High |\n\n## 3. Boundary Test Cases\n*   User with 0 friends/follows.\n*   User following 10,000 accounts.\n*   Post with maximum character limit and 10+ images.\n"
+    },
+    "messaging_app": {
+        "title": "Encrypted Messaging App",
+        "category": "Social Media",
+        "description": "Security and functionality testing for an end-to-end encrypted messaging application like WhatsApp or Signal.",
+        "prompt": "Act as an expert Quality Engineer. Create a test plan for an End-to-End Encrypted Messaging App. Prioritize security, message delivery reliability, and media sharing.",
+        "content": "\n# Encrypted Messaging App Test Strategy\n\n## 1. Test Strategy\n*   **E2EE Verification**: Ensure messages cannot be intercepted or read by the server.\n*   **Delivery**: Test message delivery statuses (Sent, Delivered, Read).\n*   **Media**: Verify encryption of shared images and videos.\n\n## 2. Test Cases\n\n| ID | Feature | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| MA01 | Security | Intercept traffic with proxy | Message content is unreadable (encrypted) | Critical |\n| MA02 | Chat | Send message in airplane mode | Message queues and sends upon reconnection | High |\n| MA03 | Group | Add member to group | New member sees history (if enabled) or only new messages | Medium |\n\n## 3. Critical Analysis\n*   Key exchange mechanism robustness.\n*   Battery usage during background sync.\n"
+    },
+    "mobile_banking": {
+        "title": "Mobile Banking App",
+        "category": "Finance",
+        "description": "Security-focused testing for a mobile banking application including fund transfers and account management.",
+        "prompt": "Act as an expert Quality Engineer. Generate a comprehensive test strategy for a Mobile Banking Application. Focus on security (MFA, Biometrics), transaction integrity, and compliance.",
+        "content": "\n# Mobile Banking App Test Strategy\n\n## 1. Test Strategy\n*   **Security**: Biometric login, 2FA, Session timeout.\n*   **Transactions**: ACIDE properties for fund transfers.\n*   **Compliance**: KYC/AML checks.\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| MB01 | Auth | Login with Fingerprint | Access granted within 2 seconds | High |\n| MB02 | Transfer | Transfer > Account Balance | Transaction failed, error shown | Critical |\n| MB03 | BillPay | Schedule future payment | Payment deducted on scheduled date | High |\n\n## 3. Security Tests\n*   SQL Injection on search fields.\n*   Man-in-the-Middle (MitM) attack simulation.\n*   Data leakage in background mode (screenshot prevention).\n"
+    },
+    "atm_software": {
+        "title": "ATM Software",
+        "category": "Finance",
+        "description": "Hardware-software integration testing for Automated Teller Machines.",
+        "prompt": "Act as an expert Quality Engineer. detailed test cases for ATM Software. Include hardware interaction scenarios (card reader, cash dispenser), network failures, and security protocols.",
+        "content": "\n# ATM Software Test Strategy\n\n## 1. Test Strategy\n*   **Hardware Integration**: Card reader, PIN pad, Cash dispenser, Receipt printer.\n*   **Network**: Handling transaction timeouts and connection loss.\n*   **Security**: PIN encryption, Physical tampering alerts.\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| ATM01 | Auth | Insert invalid card | Card ejected, error message shown | High |\n| ATM02 | Withdraw | Request amount > daily limit | Transaction declined | High |\n| ATM03 | Hardware | Cash dispenser jam simulation | Error log generated, onscreen apology | Critical |\n\n## 3. Boundary Test Cases\n*   Withdrawal of $0.\n*   Withdrawal of maximum possible amount.\n*   3 incorrect PIN attempts (Card block).\n"
+    },
+    "trading_platform": {
+        "title": "High-Frequency Trading Platform",
+        "category": "Finance",
+        "description": "Performance and accuracy testing for a stock trading platform where latency is critical.",
+        "prompt": "Act as an expert Quality Engineer. Design a test strategy for a High-Frequency Trading Platform. Focus on low-latency execution, real-time data accuracy, and failover mechanisms.",
+        "content": "\n# High-Frequency Trading Platform Test Strategy\n\n## 1. Test Strategy\n*   **Latency**: Ensure order execution < 1ms.\n*   **Concurrency**: Handle 100k+ orders per second.\n*   **Data Integrity**: Real-time stock price accuracy.\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| TR01 | Order | Place Market Order | Executed at best available price immediately | Critical |\n| TR02 | Feed | Price update latency | Update received within defined SLA | Critical |\n| TR03 | Risk | Margin check failure | Order rejected if insufficient margin | High |\n\n## 3. Stress Testing\n*   Simulate market crash (sudden volume spike).\n*   Network packet loss simulation.\n"
     },
     "car_insurance": {
         "title": "Car Insurance Industry Testing",
+        "category": "Finance",
         "description": "Domain-specific testing for insurance policy lifecycle, claims processing, and premium calculation.",
+        "prompt": "Act as an expert Quality Engineer. Create a domain-specific test plan for a Car Insurance Application. Include Premium Calculation logic, Claims Processing workflows, and Regulatory Compliance.",
         "content": "\n# Car Insurance Application Test Strategy\n\n## 1. Test Strategy\n*   **Premium Calculation**: Verify complex algorithms for quote generation.\n*   **Compliance**: Ensure adherence to state/federal regulations.\n*   **Data Security**: PII protection.\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| CI01 | Quote | Generate quote for new driver | High premium calculated correctly | High |\n| CI02 | Policy | Renew policy | Policy date extended, new premium applied | High |\n| CI03 | Claims | File a claim | Claim ID generated, status 'Pending' | High |\n\n## 3. Test Data\n*   Driver Age: 18, 25, 40, 70.\n*   Vehicle Type: Sedan, SUV, Truck.\n*   History: 0 accidents, 1 accident, DUI.\n"
     },
-    "telecom_oms": {
-        "title": "Telecom Order Management Testing",
-        "description": "Testing complex order workflows, provisioning, and billing integration for telecom services.",
-        "content": "\n# Telecom Order Management System (OMS) Test Strategy\n\n## 1. Test Strategy\n*   **Order Orchestration**: Verify order flow from capture to fulfillment.\n*   **Provisioning**: Integration with network elements to activate service.\n*   **Billing**: Correct charging initiation.\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| TO01 | Order Capture | Create new fiber connection order | Order created, status 'Submitted' | High |\n| TO02 | Provisioning | Activate service | Network status 'Active', signal live | High |\n| TO03 | Billing | First bill generation | Pro-rated charges applied correctly | High |\n\n## 3. Complex Scenarios\n*   Order modification during flight (MACD).\n*   Order cancellation handling.\n"
+    "online_marketplace": {
+        "title": "Online Marketplace (E-commerce)",
+        "category": "Retail",
+        "description": "Testing a multi-vendor marketplace focusing on search, cart, checkout, and vendor management.",
+        "prompt": "Act as an expert Quality Engineer. Develop a test strategy for a Multi-vendor E-commerce Marketplace (like Amazon). Cover Product Search, Shopping Cart, Payment Gateway integration, and Vendor Portals.",
+        "content": "\n# Online Marketplace Test Strategy\n\n## 1. Test Strategy\n*   **Search**: Relevance and filtering accuracy.\n*   **Checkout**: Transaction flow and payment gateway integration.\n*   **Vendor**: Product listing and inventory updates.\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| EC01 | Search | Filter by Price (Low to High) | Results sorted correctly | Medium |\n| EC02 | Cart | Add out-of-stock item | 'Notify me' option shown, cannot add | High |\n| EC03 | Checkout | Payment with expired card | Transaction declined | High |\n\n## 3. Boundary Test Cases\n*   Buying 999 units of a product.\n*   Coupon code usage limits.\n"
+    },
+    "pos_system": {
+        "title": "Point of Sale (POS) System",
+        "category": "Retail",
+        "description": "Testing physical POS software used in retail stores, including hardware integration and offline capability.",
+        "prompt": "Act as an expert Quality Engineer. Create test cases for a Retail Point of Sale (POS) System. Include barcode scanning, receipt printing, cash drawer operation, and offline transaction handling.",
+        "content": "\n# POS System Test Strategy\n\n## 1. Test Strategy\n*   **Hardware**: Barcode scanner, Receipt printer, Cash drawer.\n*   **Offline Mode**: Transaction storage when network is down.\n*   **Inventory**: Real-time stock deduction.\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| POS01 | Scan | Scan valid barcode | Item added to bill with correct price | Critical |\n| POS02 | Payment | Split payment (Cash + Card) | Both payments processed, total balances | High |\n| POS03 | Returns | Process refund | Inventory updated, cash/credit returned | High |\n\n## 3. Error Handling\n*   Scanner failure (manual entry fallback).\n*   Printer out of paper.\n"
+    },
+    "inventory_mgmt": {
+        "title": "Inventory Management System",
+        "category": "Retail",
+        "description": "Testing backend inventory tracking, reorder points, and supply chain integration.",
+        "prompt": "Act as an expert Quality Engineer. Design a test plan for an Inventory Management System. Focus on Stock Level tracking, Reorder Point logic, and Warehouse Management integration.",
+        "content": "\n# Inventory Management Test Strategy\n\n## 1. Test Strategy\n*   **Accuracy**: Stock count matches physical reality.\n*   **Forecasting**: Reorder alerts triggered at correct thresholds.\n*   **Integration**: Sync with POS and E-commerce.\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| INV01 | Stock | Receive shipment | Stock count increases by received amount | High |\n| INV02 | Alert | Stock falls below threshold | Low stock alert generated | High |\n| INV03 | Report | Generate monthly valuation | Accurate value based on FIFO/LIFO | Medium |\n\n## 3. Data Integrity\n*   Concurrent updates from multiple warehouses.\n"
     },
     "hospital_mgmt": {
-        "title": "Hospital Management System Testing",
+        "title": "Hospital Management System",
+        "category": "Healthcare",
         "description": "Testing critical healthcare workflows including patient admission, scheduling, and electronic health records (EHR).",
+        "prompt": "Act as an expert Quality Engineer. Create a comprehensive test strategy for a Hospital Management System. Prioritize Patient Safety, Data Privacy (HIPAA), and interoperability (HL7).",
         "content": "\n# Hospital Management System Test Strategy\n\n## 1. Test Strategy\n*   **Patient Safety**: Critical focus on data accuracy (medications, allergies).\n*   **Privacy**: HIPAA compliance.\n*   **Workflow**: Seamless transition between departments (ER -> Ward -> Billing).\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| HM01 | Admission | Register new patient | Patient ID generated, band printed | High |\n| HM02 | EHR | Update patient allergy | Alert shown when prescribing conflicting med | Critical |\n| HM03 | Billing | Discharge patient | Final bill generated including all services | High |\n\n## 3. Acceptance Criteria\n*   System must handle 1000 concurrent users.\n*   Zero data loss during failover.\n"
+    },
+    "telemedicine_app": {
+        "title": "Telemedicine App",
+        "category": "Healthcare",
+        "description": "Testing video consultation, appointment scheduling, and remote prescription features.",
+        "prompt": "Act as an expert Quality Engineer. Develop a test plan for a Telemedicine Application. Focus on Video Call Quality, Appointment Scheduling, and Secure Prescription transmission.",
+        "content": "\n# Telemedicine App Test Strategy\n\n## 1. Test Strategy\n*   **Video Quality**: WebRTC stability, low bandwidth handling.\n*   **Scheduling**: Time zone management for doctor/patient.\n*   **Prescriptions**: Digital signature and pharmacy forwarding.\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| TM01 | Video | Connect call with poor network | Audio remains clear, video degrades gracefully | High |\n| TM02 | Schedule | Book slot across time zones | Correct local time shown for both parties | High |\n| TM03 | Rx | Doctor issues prescription | Patient receives PDF, Pharmacy notified | Critical |\n\n## 3. Security\n*   End-to-end encryption of video stream.\n"
+    },
+    "health_tracker": {
+        "title": "Wearable Health Tracker",
+        "category": "Healthcare",
+        "description": "Testing data synchronization between wearable hardware and mobile app (IoT/Healthcare).",
+        "prompt": "Act as an expert Quality Engineer. Create test cases for a Wearable Health Tracker (like Fitbit) and its companion app. Cover Data Synchronization, Step Counting accuracy, and Battery optimization.",
+        "content": "\n# Wearable Health Tracker Test Strategy\n\n## 1. Test Strategy\n*   **Sensor Accuracy**: Step count, Heart rate monitoring.\n*   **Sync**: Bluetooth data transfer reliability.\n*   **Battery**: Power consumption optimization.\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| WT01 | Pedometer | Walk 100 steps | Counter shows 95-105 steps | High |\n| WT02 | Sync | Sync after 3 days offline | All historical data transferred | High |\n| WT03 | Pairing | Pair with new phone | Secure bonding, old data preserved | Medium |\n\n## 3. Environmental Tests\n*   Water resistance (if applicable).\n*   Extreme temperature performance.\n"
+    },
+    "airline_booking": {
+        "title": "Airline Booking System",
+        "category": "Travel",
+        "description": "Testing complex reservation systems, seat selection, and GDS integration.",
+        "prompt": "Act as an expert Quality Engineer. Design a test strategy for an Airline Booking System. Include Flight Search, Seat Selection, Payment Processing, and PNR generation.",
+        "content": "\n# Airline Booking System Test Strategy\n\n## 1. Test Strategy\n*   **Search Engine**: Handling complex routes and multi-city flights.\n*   **Inventory**: Real-time seat availability (prevention of double booking).\n*   **Integration**: GDS (Global Distribution System) connectivity.\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| AB01 | Search | Search Round Trip | Valid flights shown for both legs | High |\n| AB02 | Booking | Book last available seat | Booking confirmed, seat map updated | Critical |\n| AB03 | Check-in | Online check-in < 24hrs | Boarding pass generated | High |\n\n## 3. Negative Testing\n*   Booking a flight in the past.\n*   Payment failure handling.\n"
+    },
+    "ride_sharing": {
+        "title": "Ride Sharing App",
+        "category": "Travel",
+        "description": "Testing location-based services, driver-rider matching, and dynamic pricing.",
+        "prompt": "Act as an expert Quality Engineer. Create a test plan for a Ride Sharing App (like Uber/Lyft). Focus on GPS Accuracy, Driver-Rider Matching, and Surge Pricing logic.",
+        "content": "\n# Ride Sharing App Test Strategy\n\n## 1. Test Strategy\n*   **Geolocation**: Accurate pickup/drop-off point detection.\n*   **Matching Algorithm**: Nearest driver allocation.\n*   **Pricing**: Surge pricing calculation based on demand.\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| RS01 | GPS | Request ride at current location | Correct address detected | High |\n| RS02 | Matching | Driver accepts ride | Rider notified, ETA shown | High |\n| RS03 | Payment | Trip completion | Card charged, driver paid | Critical |\n\n## 3. Edge Cases\n*   GPS signal loss during trip.\n*   Rider cancels 1 minute after driver arrival.\n"
+    },
+    "telecom_oms": {
+        "title": "Telecom Order Management",
+        "category": "Telecom",
+        "description": "Testing complex order workflows, provisioning, and billing integration for telecom services.",
+        "prompt": "Act as an expert Quality Engineer. Generate a test strategy for a Telecom Order Management System. Cover Order Capture, Service Provisioning, and Billing Activation workflows.",
+        "content": "\n# Telecom Order Management System (OMS) Test Strategy\n\n## 1. Test Strategy\n*   **Order Orchestration**: Verify order flow from capture to fulfillment.\n*   **Provisioning**: Integration with network elements to activate service.\n*   **Billing**: Correct charging initiation.\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| TO01 | Order Capture | Create new fiber connection order | Order created, status 'Submitted' | High |\n| TO02 | Provisioning | Activate service | Network status 'Active', signal live | High |\n| TO03 | Billing | First bill generation | Pro-rated charges applied correctly | High |\n\n## 3. Complex Scenarios\n*   Order modification during flight (MACD).\n*   Order cancellation handling.\n"
+    },
+    "lms": {
+        "title": "Learning Management System (LMS)",
+        "category": "Education",
+        "description": "Testing educational platforms for course delivery, grading, and student management.",
+        "prompt": "Act as an expert Quality Engineer. Develop a test plan for a Learning Management System (LMS). Include Course Content delivery, Quiz/Exam modules, and Gradebook calculation.",
+        "content": "\n# LMS Test Strategy\n\n## 1. Test Strategy\n*   **Content Delivery**: Video streaming, PDF rendering.\n*   **Assessment**: Quiz timing, auto-grading logic.\n*   **User Roles**: Student vs. Teacher vs. Admin permissions.\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| LMS01 | Quiz | Submit quiz after time limit | Auto-submit triggered, answers saved | High |\n| LMS02 | Gradebook | Teacher updates grade | Student sees new grade immediately | High |\n| LMS03 | Access | Student accesses unpublished course | Access denied | Medium |\n\n## 3. Compatibility\n*   Mobile browser support.\n*   Screen reader accessibility (WCAG).\n"
+    },
+    "smart_thermostat": {
+        "title": "Smart Home Thermostat",
+        "category": "IoT",
+        "description": "Testing embedded systems, sensor accuracy, and remote control via mobile app.",
+        "prompt": "Act as an expert Quality Engineer. Create test cases for a Smart Thermostat IoT device. Cover Temperature Sensor accuracy, Remote Control via App, and Connectivity resilience.",
+        "content": "\n# Smart Thermostat Test Strategy\n\n## 1. Test Strategy\n*   **Sensor Calibration**: Accuracy within +/- 0.5 degrees.\n*   **Connectivity**: WiFi reconnection logic.\n*   **Automation**: Schedule adherence (Day/Night modes).\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| IOT01 | Sensor | Room temp increases | Thermostat reading updates | High |\n| IOT02 | App | Change temp remotely | Device responds within 3 seconds | High |\n| IOT03 | Firmware | OTA Update | Update installs, device reboots, config saved | Critical |\n\n## 3. Safety\n*   Overheat protection cutoff.\n"
     }
 }

@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+instance/
+.pytest_cache/
+flask_pwa.log
+test_results.png
+verify_pwa.py
+venv/
+.env
+.DS_Store

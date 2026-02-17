@@ -7,6 +7,15 @@
             <h1 class="mb-3">{{ item.title }}</h1>
             <p class="lead mb-4">{{ item.description }}</p>
 
+            {% if item.prompt %}
+            <div class="card mb-4 bg-light">
+                <div class="card-header fw-bold">Recommended Prompt</div>
+                <div class="card-body">
+                    <pre class="mb-0 text-wrap">{{ item.prompt }}</pre>
+                </div>
+            </div>
+            {% endif %}
+
             <div class="card shadow-sm">
                 <div class="card-body">
                     {% if item.content_html %}

@@ -1,6 +1,36 @@
 body {
     background-color: #f8f9fa;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
 }
 .card {
     margin-top: 20px;
+}
+
+/* Mobile optimizations */
+@media (max-width: 576px) {
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .btn-lg {
+        padding: 12px 20px;
+        font-size: 1.1rem;
+    }
+
+    /* Improve touch targets for links and buttons */
+    .nav-link, .btn {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card-footer .btn {
+        width: 100%;
+        margin-bottom: 5px;
+    }
 }
