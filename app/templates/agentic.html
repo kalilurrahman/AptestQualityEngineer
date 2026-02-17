@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card p-3 mb-3">
+            <h4>Agentic Configuration</h4>
+            <form id="agentic-form">
+                <div class="mb-3">
+                    <label for="api_key" class="form-label">Gemini API Key</label>
+                    <input type="password" class="form-control" id="api_key" required>
+                </div>
+                <div class="mb-3">
+                    <label for="requirements" class="form-label">Requirements</label>
+                    <textarea class="form-control" id="requirements" rows="6" placeholder="e.g. Test the login page for SQL injection..."></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="domain" class="form-label">Domain</label>
+                    <select class="form-select" id="domain">
+                        <option value="general">General Web</option>
+                        <option value="healthcare">Healthcare (HIPAA)</option>
+                        <option value="fintech">FinTech (KYC)</option>
+                        <option value="ecommerce">E-Commerce</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100" id="start-btn">Start Autonomous Agent</button>
+            </form>
+        </div>
+
+        <div class="card p-3">
+            <h5>Agent Status</h5>
+            <ul class="list-group list-group-flush" id="agent-status-list">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Strategist <span class="badge bg-secondary" id="status-strategist">Waiting</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Engineer <span class="badge bg-secondary" id="status-engineer">Waiting</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Executor <span class="badge bg-secondary" id="status-executor">Waiting</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Healer <span class="badge bg-secondary" id="status-healer">Waiting</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Evaluator <span class="badge bg-secondary" id="status-evaluator">Waiting</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="card p-3 h-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4>Live Execution Logs</h4>
+                <span class="badge bg-info text-dark">Thread ID: <span id="thread-id">-</span></span>
+            </div>
+            <div class="log-container" id="log-container">
+                <div>Waiting for start...</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('agentic-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const apiKey = document.getElementById('api_key').value;
+        const requirements = document.getElementById('requirements').value;
+        const logContainer = document.getElementById('log-container');
+        const startBtn = document.getElementById('start-btn');
+
+        if(!apiKey || !requirements) {
+            alert("Please provide API Key and Requirements");
+            return;
+        }
+
+        startBtn.disabled = true;
+        startBtn.innerText = "Running...";
+        logContainer.innerHTML = "<div>Initializing Agents...</div>";
+
+        // In a real app, this would use Server-Sent Events (SSE) or WebSockets.
+        // For this demo, we'll simulate the streaming via a fetch loop or just a simple POST
+        // that returns the final log (since SSE requires backend async support).
+
+        fetch('/agentic/run', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ api_key: apiKey, requirements: requirements })
+        })
+        .then(response => response.json())
+        .then(data => {
+            logContainer.innerHTML = "";
+            document.getElementById('thread-id').innerText = data.thread_id || "N/A";
+
+            if(data.logs) {
+                data.logs.forEach(log => {
+                    const div = document.createElement('div');
+                    div.innerText = log;
+                    logContainer.appendChild(div);
+                });
+            }
+
+            // Update Badges (Mock update)
+            document.querySelectorAll('.badge').forEach(el => {
+                if(el.id.startsWith('status-')) el.className = "badge bg-success";
+                if(el.id.startsWith('status-')) el.innerText = "Active/Done";
+            });
+
+            startBtn.disabled = false;
+            startBtn.innerText = "Start Autonomous Agent";
+        })
+        .catch(err => {
+            logContainer.innerHTML += `<div style="color:red">Error: ${err}</div>`;
+            startBtn.disabled = false;
+        });
+    });
+</script>
+{% endblock %}

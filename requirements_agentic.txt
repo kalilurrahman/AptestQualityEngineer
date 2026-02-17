@@ -1,0 +1,10 @@
+langgraph
+playwright
+pydantic
+openai
+mcp
+langchain
+langchain-community
+google-generativeai
+python-dotenv
+Pillow

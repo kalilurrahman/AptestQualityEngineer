@@ -1,0 +1,1 @@
+[{"tool": "interact_with_ui", "args": {"action": "navigate", "description": "https://example.com/login"}}, {"tool": "interact_with_ui", "args": {"action": "type", "description": "username field", "value": "testuser"}}, {"tool": "interact_with_ui", "args": {"action": "click", "description": "login button"}}]
