@@ -8,3 +8,4 @@ verify_pwa.py
 venv/
 .env
 .DS_Store
+screenshots/
