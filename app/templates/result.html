@@ -12,9 +12,25 @@
             </div>
             <div class="card-footer text-end">
                 <a href="{{ url_for('main.index') }}" class="btn btn-secondary">Back to Home</a>
+                <button onclick="downloadMarkdown()" class="btn btn-success">Download Markdown</button>
                 <button onclick="window.print()" class="btn btn-primary">Print / Save as PDF</button>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    function downloadMarkdown() {
+        const markdownContent = `{{ artifacts_md | safe }}`;
+        const blob = new Blob([markdownContent], { type: 'text/markdown' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'qe_artifacts.md';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+</script>
 {% endblock %}
