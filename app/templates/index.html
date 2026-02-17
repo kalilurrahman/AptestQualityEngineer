@@ -1,6 +1,16 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block content %}
+<div class="jumbotron text-center mt-5">
+    <h1 class="display-4">Welcome to Aptest</h1>
+    <p class="lead">AI-Powered Quality Engineering & Autonomous Testing</p>
+    <hr class="my-4">
+    <p>Generate test artifacts or deploy autonomous agents to test your application.</p>
+    <div class="d-grid gap-2 d-md-block">
+        <a class="btn btn-primary btn-lg" href="/generate" role="button">Generate Artifacts</a>
+        <a class="btn btn-secondary btn-lg" href="/agentic" role="button">Autonomous QA Agent</a>
+    </div>
+</div>
 <div class="row justify-content-center">
     <div class="col-lg-8">
         <h1 class="text-center mb-4"><i class="fas fa-robot text-primary me-2"></i>Quality Engineering Artifact Generator</h1>
