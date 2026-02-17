@@ -1,11 +1,12 @@
 from src.state.state import AgentState, TestScenario
+from src.utils.llm import call_llm
+import json
 
 def engineer_agent(state: AgentState) -> dict:
     """
-    Converts the current test scenario into tool calls.
-    (Mocked: Maps steps to tool calls)
+    Converts the current test scenario into tool calls using the LLM.
     """
-    print("[Engineer] Generating execution steps...")
+    print("[Engineer] Generating execution steps with LLM...")
 
     test_plan_data = state.get("test_plan", [])
     current_index = state.get("current_scenario_index", 0)
@@ -18,26 +19,50 @@ def engineer_agent(state: AgentState) -> dict:
 
     print(f"[Engineer] Processing scenario: {scenario.title}")
 
-    # Generate tool calls based on steps (Mock Logic)
-    # The output format will be a list of dictionaries that the Executor can iterate over.
-    tool_calls = []
-    for step in scenario.steps:
-        if step.startswith("Navigate to "):
-            url = step.replace("Navigate to ", "").strip()
-            tool_calls.append({"tool": "interact_with_ui", "args": {"action": "navigate", "description": url}})
-        elif step.startswith("Enter "):
-            desc = step.replace("Enter ", "").strip()
-            tool_calls.append({"tool": "interact_with_ui", "args": {"action": "type", "description": desc, "value": "test_value"}})
-        elif step.startswith("Click "):
-            desc = step.replace("Click ", "").strip()
-            tool_calls.append({"tool": "interact_with_ui", "args": {"action": "click", "description": desc}})
-        elif step.startswith("Wait "):
-             tool_calls.append({"tool": "interact_with_ui", "args": {"action": "wait", "description": "Wait for element", "value": "2"}})
+    prompt = f"""
+    You are an Expert Test Engineer.
+    Convert the following Test Scenario into a sequence of Tool Calls for a browser automation agent.
 
-    current_test_context = state.get("current_test_context", {})
-    current_test_context["execution_plan"] = tool_calls
+    Scenario: {scenario.title}
+    Steps: {scenario.steps}
+    Expected Result: {scenario.expected_result}
 
-    return {
-        "current_test_context": current_test_context,
-        "execution_logs": [f"Generated execution plan for scenario: {scenario.title}"]
-    }
+    Available Tool:
+    - interact_with_ui(action: str, description: str, value: Optional[str])
+
+    Actions: "click", "type", "hover", "navigate", "wait"
+
+    Output Format (JSON List of Tool Calls):
+    [
+        {{"tool": "interact_with_ui", "args": {{"action": "navigate", "description": "https://example.com/login"}}}},
+        {{"tool": "interact_with_ui", "args": {{"action": "type", "description": "username field", "value": "testuser"}}}},
+        {{"tool": "interact_with_ui", "args": {{"action": "click", "description": "login button"}}}}
+    ]
+
+    Rules:
+    1. Use "navigate" for URLs.
+    2. Use "type" for input fields. "description" should be a visual description (e.g., "blue search bar"). "value" is the text to type.
+    3. Use "click" for buttons/links. "description" should describe the element visually or semantically.
+    4. Return ONLY valid JSON.
+    """
+
+    try:
+        response_text = call_llm(prompt, capability="coding", structured_output_schema=True)
+        # Sanitize
+        cleaned_text = response_text.replace("```json", "").replace("```", "").strip()
+
+        tool_calls = json.loads(cleaned_text)
+
+        current_test_context = state.get("current_test_context", {})
+        current_test_context["execution_plan"] = tool_calls
+
+        return {
+            "current_test_context": current_test_context,
+            "execution_logs": [f"Generated execution plan for scenario: {scenario.title}"]
+        }
+    except Exception as e:
+        print(f"[Engineer] Error generating code: {e}")
+        return {
+            "execution_logs": [f"Error generating execution plan: {e}"],
+            "error": str(e)
+        }
