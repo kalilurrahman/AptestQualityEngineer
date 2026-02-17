@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="mb-3">{{ item.title }}</h1>
+            <p class="lead mb-4">{{ item.description }}</p>
+
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    {% if item.content_html %}
+                        {{ item.content_html | safe }}
+                    {% else %}
+                        <pre>{{ item.content }}</pre>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="mt-4 mb-5">
+                <a href="{{ url_for('main.repository') }}" class="btn btn-secondary">Back to Repository</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
