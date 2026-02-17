@@ -1,7 +1,0 @@
-langgraph
-playwright
-pydantic
-openai
-mcp
-langchain
-langchain-community
