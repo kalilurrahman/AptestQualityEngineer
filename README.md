@@ -1,51 +1,70 @@
-# Aptest Quality Engineering Tool
+# Quality Engineering Artifact Generator
 
-An AI-powered application for generating comprehensive Quality Engineering artifacts.
+A comprehensive, AI-powered tool for generating Quality Engineering artifacts, including Test Strategies, Test Cases, Data, and more. Built with Flask and Google Gemini Pro.
 
 ## Features
 
-*   **Generate Test Artifacts**: Creates Test Strategy, Test Cases, Boundary Value Analysis, Test Data, and more using Google Gemini Pro.
-*   **Flexible Input**: Accepts text prompts, website URLs, and document uploads (PDF/Text) as context.
-*   **Test Case Repository**: Includes a starter library of test strategies for common domains (Netflix, Google News, Car Insurance, etc.).
-*   **Modern UI**: Built with Flask and Bootstrap 5.
+*   **AI-Powered Generation:** connect to Google Gemini Pro to generate detailed testing artifacts.
+*   **Multimodal Input:**
+    *   **Text:** Describe the feature or application.
+    *   **URL:** Provide a link to a website or documentation.
+    *   **File:** Upload PDF or Text documents.
+    *   **Image:** Upload UI screenshots or diagrams (uses `gemini-1.5-flash`).
+*   **Test Case Repository:** A built-in library of pre-defined test cases for various industries (Finance, Healthcare, Retail, etc.).
+*   **Searchable Repository:** Quickly find relevant test cases.
+*   **Downloadable Results:** Save generated artifacts as Markdown files.
+*   **Progressive Web App (PWA):** Installable on mobile and desktop devices with offline support for core assets.
+*   **Mobile-First Design:** Responsive UI optimized for all screen sizes.
+
+## Screenshots
+
+| Home | Repository |
+|---|---|
+| ![Home Screen](screenshot_home.png) | ![Repository](screenshot_repo.png) |
 
 ## Installation
 
-1.  Clone the repository.
-2.  Install dependencies:
+1.  **Clone the repository:**
+    ```bash
+    git clone <repository-url>
+    cd <repository-directory>
+    ```
+
+2.  **Create a virtual environment:**
+    ```bash
+    python3 -m venv venv
+    source venv/bin/activate
+    ```
+
+3.  **Install dependencies:**
     ```bash
     pip install -r requirements.txt
     ```
-3.  Populate the starter data:
+
+4.  **Run the application:**
     ```bash
-    python populate_data.py
+    python3 run.py
     ```
+
+5.  **Access the app:**
+    Open your browser and navigate to `http://127.0.0.1:5000`.
 
 ## Usage
 
-1.  Run the application:
-    ```bash
-    python run.py
-    ```
-2.  Open your browser and navigate to `http://localhost:5000`.
-3.  Enter your Google Gemini API Key.
-4.  Provide the context (Text, URL, or File) and click "Generate Artifacts".
-5.  View, print, or save the generated artifacts.
+1.  **Enter API Key:** You need a valid Google Gemini API Key.
+2.  **Select Input Type:** Choose between Text, URL, File, or Image.
+3.  **Provide Context:** Enter the prompt, URL, or upload the file/image.
+4.  **Generate:** Click "Generate Artifacts" and wait for the AI to process your request.
+5.  **View & Download:** Review the generated strategy and test cases. You can download the result as a Markdown file or print/save as PDF.
 
-## Project Structure
+## Technologies
 
-*   `app/`: Core application code.
-    *   `__init__.py`: Flask app initialization.
-    *   `routes.py`: URL routing and view logic.
-    *   `utils.py`: Helper functions for LLM integration and text extraction.
-    *   `templates/`: HTML templates.
-    *   `static/`: CSS and JS files.
-    *   `data/`: Data storage (JSON).
-*   `run.py`: Entry point.
-*   `populate_data.py`: Script to generate starter data.
-*   `test_*.py`: Unit and integration tests.
+*   **Backend:** Python, Flask
+*   **AI:** Google Gemini Pro (`google-generativeai`)
+*   **Frontend:** HTML5, CSS3, Bootstrap 5
+*   **PWA:** Service Worker, Manifest
+*   **Utilities:** BeautifulSoup4 (Web Scraping), PyPDF (PDF Parsing), Pillow (Image Processing)
 
-## Requirements
+## License
 
-*   Python 3.8+
-*   Google Gemini API Key
+MIT

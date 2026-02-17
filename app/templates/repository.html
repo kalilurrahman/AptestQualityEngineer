@@ -6,15 +6,22 @@
         <h1 class="mb-4 text-center">Test Case Repository</h1>
         <p class="text-center mb-5">Pre-built test cases and strategies for common application types.</p>
 
-        <div class="row row-cols-1 row-cols-md-2 g-4">
+        <!-- Search Input -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-6">
+                <input type="text" id="searchInput" class="form-control form-control-lg" placeholder="Search repository..." onkeyup="filterRepository()">
+            </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-2 g-4" id="repoList">
             {% for id, item in items.items() %}
-            <div class="col">
+            <div class="col repo-item">
                 <div class="card h-100 shadow-sm">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-2">
                             <h5 class="card-title mb-0">{{ item.title }}</h5>
                             {% if item.category %}
-                            <span class="badge bg-secondary">{{ item.category }}</span>
+                            <span class="badge bg-secondary category-badge">{{ item.category }}</span>
                             {% endif %}
                         </div>
                         <p class="card-text">{{ item.description }}</p>
@@ -26,6 +33,40 @@
             </div>
             {% endfor %}
         </div>
+
+        <div id="noResults" class="text-center mt-5 d-none">
+            <p class="text-muted">No items found matching your search.</p>
+        </div>
     </div>
 </div>
+
+<script>
+    function filterRepository() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const list = document.getElementById('repoList');
+        const items = list.getElementsByClassName('repo-item');
+        let visibleCount = 0;
+
+        for (let i = 0; i < items.length; i++) {
+            const title = items[i].getElementsByClassName('card-title')[0].innerText;
+            const description = items[i].getElementsByClassName('card-text')[0].innerText;
+            const category = items[i].getElementsByClassName('category-badge')[0] ? items[i].getElementsByClassName('category-badge')[0].innerText : "";
+
+            if (title.toLowerCase().indexOf(filter) > -1 || description.toLowerCase().indexOf(filter) > -1 || category.toLowerCase().indexOf(filter) > -1) {
+                items[i].style.display = "";
+                visibleCount++;
+            } else {
+                items[i].style.display = "none";
+            }
+        }
+
+        const noResults = document.getElementById('noResults');
+        if (visibleCount === 0) {
+            noResults.classList.remove('d-none');
+        } else {
+            noResults.classList.add('d-none');
+        }
+    }
+</script>
 {% endblock %}
