@@ -141,4 +141,101 @@ input:checked + .slider:before {
     height: 400px;
     overflow-y: auto;
     font-size: 0.9em;
+    margin-top: 20px;
+}
+
+/* Loading Spinner */
+.loading-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* Markdown Content Styling */
+.markdown-content table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    vertical-align: top;
+    border-color: #dee2e6;
+    border-collapse: collapse;
+}
+
+.markdown-content th,
+.markdown-content td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.markdown-content th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    background-color: #e9ecef;
+    font-weight: 600;
+}
+
+.markdown-content tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    color: #0d6efd;
+}
+
+.markdown-content blockquote {
+    border-left: 4px solid #0d6efd;
+    padding-left: 1rem;
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+
+/* Mobile optimizations */
+@media (max-width: 576px) {
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .btn-lg {
+        padding: 12px 20px;
+        font-size: 1.1rem;
+    }
+
+    /* Improve touch targets for links and buttons */
+    .nav-link, .btn {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card-footer .btn {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    /* Make tables responsive */
+    .markdown-content table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
 }
