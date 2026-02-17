@@ -62,6 +62,20 @@
         "prompt": "Act as an expert Quality Engineer. Create a domain-specific test plan for a Car Insurance Application. Include Premium Calculation logic, Claims Processing workflows, and Regulatory Compliance.",
         "content": "\n# Car Insurance Application Test Strategy\n\n## 1. Test Strategy\n*   **Premium Calculation**: Verify complex algorithms for quote generation.\n*   **Compliance**: Ensure adherence to state/federal regulations.\n*   **Data Security**: PII protection.\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| CI01 | Quote | Generate quote for new driver | High premium calculated correctly | High |\n| CI02 | Policy | Renew policy | Policy date extended, new premium applied | High |\n| CI03 | Claims | File a claim | Claim ID generated, status 'Pending' | High |\n\n## 3. Test Data\n*   Driver Age: 18, 25, 40, 70.\n*   Vehicle Type: Sedan, SUV, Truck.\n*   History: 0 accidents, 1 accident, DUI.\n"
     },
+    "crypto_wallet": {
+        "title": "Crypto Wallet App",
+        "category": "FinTech",
+        "description": "Security and transaction testing for a cryptocurrency wallet application.",
+        "prompt": "Act as an expert Quality Engineer. Create a test plan for a Crypto Wallet App. Focus on Seed Phrase recovery, Blockchain transaction confirmations, and Security against phishing.",
+        "content": "\n# Crypto Wallet App Test Strategy\n\n## 1. Test Strategy\n*   **Security**: Seed phrase encryption, Biometric access.\n*   **Blockchain**: Transaction confirmation on testnet/mainnet.\n*   **Recovery**: Wallet restoration workflow.\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| CW01 | Security | Enter incorrect PIN 3 times | App locks for cooldown period | High |\n| CW02 | Transaction | Send ETH to valid address | Transaction hash generated, balance updates | Critical |\n| CW03 | Recovery | Restore wallet with valid seed | All funds and history restored | Critical |\n\n## 3. Negative Testing\n*   Sending funds to an invalid address format.\n*   Insufficient gas fees.\n"
+    },
+    "loan_system": {
+        "title": "Loan Origination System",
+        "category": "FinTech",
+        "description": "Testing the end-to-end loan application, credit scoring, and approval workflow.",
+        "prompt": "Act as an expert Quality Engineer. Design a test strategy for a Loan Origination System. Cover Application submission, Credit Score integration, and Automated Approval logic.",
+        "content": "\n# Loan Origination System Test Strategy\n\n## 1. Test Strategy\n*   **Workflow**: End-to-end flow from application to disbursement.\n*   **Integration**: Credit Bureau APIs (Experian/Equifax).\n*   **Decision Engine**: Automated approval/rejection logic.\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| LS01 | Application | Submit incomplete application | Validation errors shown for missing fields | High |\n| LS02 | Decision | Applicant score < 600 | Loan auto-rejected | High |\n| LS03 | Disburse | Approved loan | Funds transferred to applicant bank account | Critical |\n\n## 3. Compliance\n*   Truth in Lending Act (TILA) disclosures.\n"
+    },
     "online_marketplace": {
         "title": "Online Marketplace (E-commerce)",
         "category": "Retail",
@@ -104,6 +118,13 @@
         "prompt": "Act as an expert Quality Engineer. Create test cases for a Wearable Health Tracker (like Fitbit) and its companion app. Cover Data Synchronization, Step Counting accuracy, and Battery optimization.",
         "content": "\n# Wearable Health Tracker Test Strategy\n\n## 1. Test Strategy\n*   **Sensor Accuracy**: Step count, Heart rate monitoring.\n*   **Sync**: Bluetooth data transfer reliability.\n*   **Battery**: Power consumption optimization.\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| WT01 | Pedometer | Walk 100 steps | Counter shows 95-105 steps | High |\n| WT02 | Sync | Sync after 3 days offline | All historical data transferred | High |\n| WT03 | Pairing | Pair with new phone | Secure bonding, old data preserved | Medium |\n\n## 3. Environmental Tests\n*   Water resistance (if applicable).\n*   Extreme temperature performance.\n"
     },
+    "medical_device": {
+        "title": "Pacemaker Software",
+        "category": "Healthcare",
+        "description": "Critical safety testing for embedded medical device software.",
+        "prompt": "Act as an expert Quality Engineer. Develop a rigorous test plan for Pacemaker Embedded Software. Focus on Battery Management, Pacing Algorithm accuracy, and Failsafe mechanisms.",
+        "content": "\n# Pacemaker Software Test Strategy\n\n## 1. Test Strategy\n*   **Safety Critical**: ISO 13485 / IEC 62304 compliance.\n*   **Failsafe**: Default pacing mode activation on error.\n*   **Battery**: Accurate remaining life estimation.\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| PM01 | Pacing | Heart rate drops below threshold | Pacing pulses initiated immediately | Critical |\n| PM02 | Battery | Battery level reaches 10% | Elective Replacement Indicator (ERI) triggers | Critical |\n| PM03 | Interference | Exposure to strong magnetic field | Switch to fixed-rate pacing (magnet mode) | Critical |\n\n## 3. Risk Management\n*   FMEA (Failure Mode and Effects Analysis) validation.\n"
+    },
     "airline_booking": {
         "title": "Airline Booking System",
         "category": "Travel",
@@ -138,5 +159,26 @@
         "description": "Testing embedded systems, sensor accuracy, and remote control via mobile app.",
         "prompt": "Act as an expert Quality Engineer. Create test cases for a Smart Thermostat IoT device. Cover Temperature Sensor accuracy, Remote Control via App, and Connectivity resilience.",
         "content": "\n# Smart Thermostat Test Strategy\n\n## 1. Test Strategy\n*   **Sensor Calibration**: Accuracy within +/- 0.5 degrees.\n*   **Connectivity**: WiFi reconnection logic.\n*   **Automation**: Schedule adherence (Day/Night modes).\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| IOT01 | Sensor | Room temp increases | Thermostat reading updates | High |\n| IOT02 | App | Change temp remotely | Device responds within 3 seconds | High |\n| IOT03 | Firmware | OTA Update | Update installs, device reboots, config saved | Critical |\n\n## 3. Safety\n*   Overheat protection cutoff.\n"
+    },
+    "smart_hub": {
+        "title": "Smart Home Hub",
+        "category": "IoT",
+        "description": "Testing integration hub for various smart devices (lights, locks, cameras).",
+        "prompt": "Act as an expert Quality Engineer. Design a test plan for a Smart Home Hub. Focus on Protocol Support (Zigbee/Z-Wave), Device Pairing, and Automation Rules execution.",
+        "content": "\n# Smart Home Hub Test Strategy\n\n## 1. Test Strategy\n*   **Interoperability**: Support for various brands and protocols.\n*   **Reliability**: Uptime and recovery from power loss.\n*   **Automation**: Triggering actions based on events (Motion -> Light On).\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| HUB01 | Pairing | Pair Zigbee Bulb | Device discovered and added to dashboard | High |\n| HUB02 | Automation | Rule: \"If 6PM, Turn on Porch Light\" | Light turns on at 6:00 PM | High |\n| HUB03 | Offline | Internet disconnected | Local automations continue to function | Critical |\n\n## 3. Security\n*   Firmware update authenticity check.\n"
+    },
+    "game_server": {
+        "title": "Multiplayer Game Server",
+        "category": "Gaming",
+        "description": "Backend testing for multiplayer games focusing on latency, synchronization, and matchmaking.",
+        "prompt": "Act as an expert Quality Engineer. Create a test strategy for a Multiplayer Game Server. Focus on Latency/Lag compensation, Matchmaking logic, and State Synchronization.",
+        "content": "\n# Multiplayer Game Server Test Strategy\n\n## 1. Test Strategy\n*   **Performance**: Handling 10,000 concurrent connections.\n*   **Sync**: Ensuring all players see the same game state.\n*   **Matchmaking**: Balancing teams based on skill level (ELO).\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| GM01 | Matchmaking | Queue 10 players of similar rank | Match created within 30 seconds | High |\n| GM02 | Gameplay | Player A shoots Player B | Hit registered, health deducted on both clients | Critical |\n| GM03 | Network | Simulate 200ms packet loss | Lag compensation smooths movement | High |\n\n## 3. Anti-Cheat\n*   Speed hack detection.\n"
+    },
+    "chatbot": {
+        "title": "AI Customer Support Chatbot",
+        "category": "AI/ML",
+        "description": "Testing NLP models, intent recognition, and fallback mechanisms.",
+        "prompt": "Act as an expert Quality Engineer. Develop a test plan for an AI Chatbot. Focus on Intent Recognition accuracy, Context retention, and Safety/Bias testing.",
+        "content": "\n# AI Chatbot Test Strategy\n\n## 1. Test Strategy\n*   **NLP Testing**: Verifying understanding of various phrasings.\n*   **Context**: Remembering previous turns in the conversation.\n*   **Safety**: Preventing toxic or inappropriate responses.\n\n## 2. Test Cases\n\n| ID | Module | Test Scenario | Expected Result | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n| AI01 | Intent | \"I want to return my order\" | Recognized as 'Return_Order' intent | High |\n| AI02 | Context | User says \"It's broken\" after Order #123 | Bot links \"It\" to Order #123 | High |\n| AI03 | Safety | User sends profanity | Bot responds politely and professionally | Medium |\n\n## 3. Metrics\n*   F1 Score for intent classification.\n"
     }
 }

@@ -255,6 +255,58 @@ Testing a full-stack web application requires a layered approach:
 *   History: 0 accidents, 1 accident, DUI.
 """
     },
+    "crypto_wallet": {
+        "title": "Crypto Wallet App",
+        "category": "FinTech",
+        "description": "Security and transaction testing for a cryptocurrency wallet application.",
+        "prompt": "Act as an expert Quality Engineer. Create a test plan for a Crypto Wallet App. Focus on Seed Phrase recovery, Blockchain transaction confirmations, and Security against phishing.",
+        "content": """
+# Crypto Wallet App Test Strategy
+
+## 1. Test Strategy
+*   **Security**: Seed phrase encryption, Biometric access.
+*   **Blockchain**: Transaction confirmation on testnet/mainnet.
+*   **Recovery**: Wallet restoration workflow.
+
+## 2. Test Cases
+
+| ID | Module | Test Scenario | Expected Result | Priority |
+| :--- | :--- | :--- | :--- | :--- |
+| CW01 | Security | Enter incorrect PIN 3 times | App locks for cooldown period | High |
+| CW02 | Transaction | Send ETH to valid address | Transaction hash generated, balance updates | Critical |
+| CW03 | Recovery | Restore wallet with valid seed | All funds and history restored | Critical |
+
+## 3. Negative Testing
+*   Sending funds to an invalid address format.
+*   Insufficient gas fees.
+"""
+    },
+    "loan_system": {
+        "title": "Loan Origination System",
+        "category": "FinTech",
+        "description": "Testing the end-to-end loan application, credit scoring, and approval workflow.",
+        "prompt": "Act as an expert Quality Engineer. Design a test strategy for a Loan Origination System. Cover Application submission, Credit Score integration, and Automated Approval logic.",
+        "content": """
+# Loan Origination System Test Strategy
+
+## 1. Test Strategy
+*   **Workflow**: End-to-end flow from application to disbursement.
+*   **Integration**: Credit Bureau APIs (Experian/Equifax).
+*   **Decision Engine**: Automated approval/rejection logic.
+
+## 2. Test Cases
+
+| ID | Module | Test Scenario | Expected Result | Priority |
+| :--- | :--- | :--- | :--- | :--- |
+| LS01 | Application | Submit incomplete application | Validation errors shown for missing fields | High |
+| LS02 | Decision | Applicant score < 600 | Loan auto-rejected | High |
+| LS03 | Disburse | Approved loan | Funds transferred to applicant bank account | Critical |
+
+## 3. Compliance
+*   Truth in Lending Act (TILA) disclosures.
+"""
+    },
+
 
     # ------------------
     # Retail & E-commerce
@@ -417,6 +469,31 @@ Testing a full-stack web application requires a layered approach:
 *   Extreme temperature performance.
 """
     },
+    "medical_device": {
+        "title": "Pacemaker Software",
+        "category": "Healthcare",
+        "description": "Critical safety testing for embedded medical device software.",
+        "prompt": "Act as an expert Quality Engineer. Develop a rigorous test plan for Pacemaker Embedded Software. Focus on Battery Management, Pacing Algorithm accuracy, and Failsafe mechanisms.",
+        "content": """
+# Pacemaker Software Test Strategy
+
+## 1. Test Strategy
+*   **Safety Critical**: ISO 13485 / IEC 62304 compliance.
+*   **Failsafe**: Default pacing mode activation on error.
+*   **Battery**: Accurate remaining life estimation.
+
+## 2. Test Cases
+
+| ID | Module | Test Scenario | Expected Result | Priority |
+| :--- | :--- | :--- | :--- | :--- |
+| PM01 | Pacing | Heart rate drops below threshold | Pacing pulses initiated immediately | Critical |
+| PM02 | Battery | Battery level reaches 10% | Elective Replacement Indicator (ERI) triggers | Critical |
+| PM03 | Interference | Exposure to strong magnetic field | Switch to fixed-rate pacing (magnet mode) | Critical |
+
+## 3. Risk Management
+*   FMEA (Failure Mode and Effects Analysis) validation.
+"""
+    },
 
     # ------------------
     # Travel & Transport
@@ -560,6 +637,89 @@ Testing a full-stack web application requires a layered approach:
 
 ## 3. Safety
 *   Overheat protection cutoff.
+"""
+    },
+    "smart_hub": {
+        "title": "Smart Home Hub",
+        "category": "IoT",
+        "description": "Testing integration hub for various smart devices (lights, locks, cameras).",
+        "prompt": "Act as an expert Quality Engineer. Design a test plan for a Smart Home Hub. Focus on Protocol Support (Zigbee/Z-Wave), Device Pairing, and Automation Rules execution.",
+        "content": """
+# Smart Home Hub Test Strategy
+
+## 1. Test Strategy
+*   **Interoperability**: Support for various brands and protocols.
+*   **Reliability**: Uptime and recovery from power loss.
+*   **Automation**: Triggering actions based on events (Motion -> Light On).
+
+## 2. Test Cases
+
+| ID | Module | Test Scenario | Expected Result | Priority |
+| :--- | :--- | :--- | :--- | :--- |
+| HUB01 | Pairing | Pair Zigbee Bulb | Device discovered and added to dashboard | High |
+| HUB02 | Automation | Rule: "If 6PM, Turn on Porch Light" | Light turns on at 6:00 PM | High |
+| HUB03 | Offline | Internet disconnected | Local automations continue to function | Critical |
+
+## 3. Security
+*   Firmware update authenticity check.
+"""
+    },
+
+    # ------------------
+    # Gaming
+    # ------------------
+    "game_server": {
+        "title": "Multiplayer Game Server",
+        "category": "Gaming",
+        "description": "Backend testing for multiplayer games focusing on latency, synchronization, and matchmaking.",
+        "prompt": "Act as an expert Quality Engineer. Create a test strategy for a Multiplayer Game Server. Focus on Latency/Lag compensation, Matchmaking logic, and State Synchronization.",
+        "content": """
+# Multiplayer Game Server Test Strategy
+
+## 1. Test Strategy
+*   **Performance**: Handling 10,000 concurrent connections.
+*   **Sync**: Ensuring all players see the same game state.
+*   **Matchmaking**: Balancing teams based on skill level (ELO).
+
+## 2. Test Cases
+
+| ID | Module | Test Scenario | Expected Result | Priority |
+| :--- | :--- | :--- | :--- | :--- |
+| GM01 | Matchmaking | Queue 10 players of similar rank | Match created within 30 seconds | High |
+| GM02 | Gameplay | Player A shoots Player B | Hit registered, health deducted on both clients | Critical |
+| GM03 | Network | Simulate 200ms packet loss | Lag compensation smooths movement | High |
+
+## 3. Anti-Cheat
+*   Speed hack detection.
+"""
+    },
+
+    # ------------------
+    # AI/ML
+    # ------------------
+    "chatbot": {
+        "title": "AI Customer Support Chatbot",
+        "category": "AI/ML",
+        "description": "Testing NLP models, intent recognition, and fallback mechanisms.",
+        "prompt": "Act as an expert Quality Engineer. Develop a test plan for an AI Chatbot. Focus on Intent Recognition accuracy, Context retention, and Safety/Bias testing.",
+        "content": """
+# AI Chatbot Test Strategy
+
+## 1. Test Strategy
+*   **NLP Testing**: Verifying understanding of various phrasings.
+*   **Context**: Remembering previous turns in the conversation.
+*   **Safety**: Preventing toxic or inappropriate responses.
+
+## 2. Test Cases
+
+| ID | Module | Test Scenario | Expected Result | Priority |
+| :--- | :--- | :--- | :--- | :--- |
+| AI01 | Intent | "I want to return my order" | Recognized as 'Return_Order' intent | High |
+| AI02 | Context | User says "It's broken" after Order #123 | Bot links "It" to Order #123 | High |
+| AI03 | Safety | User sends profanity | Bot responds politely and professionally | Medium |
+
+## 3. Metrics
+*   F1 Score for intent classification.
 """
     }
 }

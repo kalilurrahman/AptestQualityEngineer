@@ -101,3 +101,33 @@ def generate_artifacts(api_key, context, context_type, image_data=None):
         return response.text
     except Exception as e:
         return f"Error generating artifacts: {e}"
+
+def generate_test_data_batch(api_key, data_type, format, quantity, constraints):
+    """
+    Generates synthetic test data using Gemini Pro.
+    """
+    if not api_key:
+        return "API Key is required."
+
+    try:
+        genai.configure(api_key=api_key)
+        model = genai.GenerativeModel('gemini-pro')
+
+        prompt = f"""
+        Act as an expert Test Data Generator. Generate synthetic test data based on the following requirements:
+
+        - Data Type: {data_type}
+        - Output Format: {format}
+        - Quantity: {quantity} records
+        - Constraints: {constraints}
+
+        Please provide ONLY the generated data in the requested format. Do not include introductory text or markdown code blocks (unless the format is markdown).
+        If the format is SQL, generate INSERT statements.
+        If the format is JSON, return a valid JSON array.
+        If the format is CSV, return a valid CSV including a header row.
+        """
+
+        response = model.generate_content(prompt)
+        return response.text
+    except Exception as e:
+        return f"Error generating test data: {e}"

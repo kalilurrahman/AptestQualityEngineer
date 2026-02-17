@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, jsonify, flash
-from app.utils import extract_text_from_url, extract_text_from_file, generate_artifacts
+from app.utils import extract_text_from_url, extract_text_from_file, generate_artifacts, generate_test_data_batch
 import markdown
 import json
 import os
@@ -86,3 +86,26 @@ def repo_detail(item_id):
         item['content_html'] = markdown.markdown(item['content'], extensions=['tables', 'fenced_code'])
 
     return render_template('repo_detail.html', item=item)
+
+@main.route('/test-data')
+def test_data():
+    return render_template('test_data.html')
+
+@main.route('/generate-test-data', methods=['POST'])
+def generate_data():
+    api_key = request.form.get('api_key')
+    data_type = request.form.get('data_type')
+    output_format = request.form.get('format')
+    quantity = request.form.get('quantity')
+    constraints = request.form.get('constraints')
+
+    if not api_key:
+        return jsonify({'error': 'API Key is required'}), 400
+
+    generated_data = generate_test_data_batch(api_key, data_type, output_format, quantity, constraints)
+
+    # Simple error check
+    if generated_data and generated_data.startswith("Error"):
+         return jsonify({'error': generated_data}), 500
+
+    return render_template('test_data_result.html', data=generated_data, format=output_format)
