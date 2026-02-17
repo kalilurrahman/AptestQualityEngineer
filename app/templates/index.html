@@ -3,7 +3,7 @@
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-lg-8">
-        <h1 class="text-center mb-4">Quality Engineering Artifact Generator</h1>
+        <h1 class="text-center mb-4"><i class="fas fa-robot text-primary me-2"></i>Quality Engineering Artifact Generator</h1>
         <p class="text-center mb-5">
             Generate comprehensive test strategies, test cases, and more using AI.
         </p>
@@ -12,27 +12,45 @@
             <div class="card-body">
                 <form id="generateForm" action="{{ url_for('main.generate') }}" method="POST" enctype="multipart/form-data" onsubmit="showLoading()">
                     <div class="mb-3">
-                        <label for="api_key" class="form-label">Google Gemini API Key</label>
+                        <label for="api_key" class="form-label"><i class="fas fa-key me-1"></i>Google Gemini API Key</label>
                         <input type="password" class="form-control" id="api_key" name="api_key" placeholder="Enter your Gemini API Key" required>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Input Type</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="context_type" id="type_text" value="text" checked onclick="toggleInput('text')">
-                            <label class="form-check-label" for="type_text">Text Description / Prompt</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="context_type" id="type_url" value="url" onclick="toggleInput('url')">
-                            <label class="form-check-label" for="type_url">URL Reference</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="context_type" id="type_file" value="file" onclick="toggleInput('file')">
-                            <label class="form-check-label" for="type_file">Document Upload (PDF/Text)</label>
-                        </div>
-                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="context_type" id="type_image" value="image" onclick="toggleInput('image')">
-                            <label class="form-check-label" for="type_image">Image / UI Screenshot</label>
+                        <label class="form-label"><i class="fas fa-list-ul me-1"></i>Input Type</label>
+                        <div class="row g-2">
+                            <div class="col-md-3">
+                                <div class="form-check p-0">
+                                    <input class="btn-check" type="radio" name="context_type" id="type_text" value="text" checked onclick="toggleInput('text')">
+                                    <label class="btn btn-outline-primary w-100" for="type_text">
+                                        <i class="fas fa-font mb-1 d-block"></i> Text
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-check p-0">
+                                    <input class="btn-check" type="radio" name="context_type" id="type_url" value="url" onclick="toggleInput('url')">
+                                    <label class="btn btn-outline-primary w-100" for="type_url">
+                                        <i class="fas fa-link mb-1 d-block"></i> URL
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-check p-0">
+                                    <input class="btn-check" type="radio" name="context_type" id="type_file" value="file" onclick="toggleInput('file')">
+                                    <label class="btn btn-outline-primary w-100" for="type_file">
+                                        <i class="fas fa-file-pdf mb-1 d-block"></i> File
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-check p-0">
+                                    <input class="btn-check" type="radio" name="context_type" id="type_image" value="image" onclick="toggleInput('image')">
+                                    <label class="btn btn-outline-primary w-100" for="type_image">
+                                        <i class="fas fa-image mb-1 d-block"></i> Image
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -56,8 +74,10 @@
                         <input type="file" class="form-control" id="context_image" name="context_image" accept="image/*">
                     </div>
 
-                    <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">Generate Artifacts</button>
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
+                            <i class="fas fa-magic me-2"></i>Generate Artifacts
+                        </button>
                     </div>
                 </form>
             </div>

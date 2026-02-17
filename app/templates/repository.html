@@ -6,16 +6,30 @@
         <h1 class="mb-4 text-center">Test Case Repository</h1>
         <p class="text-center mb-5">Pre-built test cases and strategies for common application types.</p>
 
-        <!-- Search Input -->
-        <div class="row justify-content-center mb-5">
+        <!-- Search and Filter -->
+        <div class="row justify-content-center mb-5 g-3">
             <div class="col-md-6">
                 <input type="text" id="searchInput" class="form-control form-control-lg" placeholder="Search repository..." onkeyup="filterRepository()">
+            </div>
+            <div class="col-md-4">
+                <select id="categoryFilter" class="form-select form-select-lg" onchange="filterRepository()">
+                    <option value="">All Categories</option>
+                    {% set categories = [] %}
+                    {% for id, item in items.items() %}
+                        {% if item.category and item.category not in categories %}
+                            {% set _ = categories.append(item.category) %}
+                        {% endif %}
+                    {% endfor %}
+                    {% for category in categories|sort %}
+                        <option value="{{ category }}">{{ category }}</option>
+                    {% endfor %}
+                </select>
             </div>
         </div>
 
         <div class="row row-cols-1 row-cols-md-2 g-4" id="repoList">
             {% for id, item in items.items() %}
-            <div class="col repo-item">
+            <div class="col repo-item" data-category="{{ item.category }}">
                 <div class="card h-100 shadow-sm">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-2">
@@ -42,18 +56,25 @@
 
 <script>
     function filterRepository() {
-        const input = document.getElementById('searchInput');
-        const filter = input.value.toLowerCase();
+        const searchInput = document.getElementById('searchInput');
+        const categorySelect = document.getElementById('categoryFilter');
+
+        const filter = searchInput.value.toLowerCase();
+        const selectedCategory = categorySelect.value;
+
         const list = document.getElementById('repoList');
         const items = list.getElementsByClassName('repo-item');
         let visibleCount = 0;
 
         for (let i = 0; i < items.length; i++) {
-            const title = items[i].getElementsByClassName('card-title')[0].innerText;
-            const description = items[i].getElementsByClassName('card-text')[0].innerText;
-            const category = items[i].getElementsByClassName('category-badge')[0] ? items[i].getElementsByClassName('category-badge')[0].innerText : "";
+            const title = items[i].querySelector('.card-title').innerText.toLowerCase();
+            const description = items[i].querySelector('.card-text').innerText.toLowerCase();
+            const itemCategory = items[i].getAttribute('data-category');
 
-            if (title.toLowerCase().indexOf(filter) > -1 || description.toLowerCase().indexOf(filter) > -1 || category.toLowerCase().indexOf(filter) > -1) {
+            const matchesSearch = title.indexOf(filter) > -1 || description.indexOf(filter) > -1;
+            const matchesCategory = selectedCategory === "" || itemCategory === selectedCategory;
+
+            if (matchesSearch && matchesCategory) {
                 items[i].style.display = "";
                 visibleCount++;
             } else {
